@@ -55,6 +55,9 @@ jobs:
         with:
           exclude_inputs: bundle_id,display_name,demc,ytvid
           
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Download and Validate IPA
         run: |
           wget "${{ inputs.ipa_url }}" --quiet --no-verbose -O youtube.ipa
@@ -328,6 +331,9 @@ jobs:
       #     make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64
       #     mv packages/*.deb ${{ github.workspace }}/volboostyt.deb
           
+      - name: Prune Localizations (keep en, ko only)
+        run: bash .github/scripts/prune_localizations.sh *.deb
+
       - name: Inject Tweaks Into IPA
         run: |
           tweaks="OpenYouTubeSafariExtension.appex"

@@ -69,6 +69,7 @@ jobs:
           cd YTL
           echo "YTL_VERSION=$(grep '^Version:' DEBIAN/control | awk '{print $2}')" >> $GITHUB_ENV
           chmod -R 755 .
+          bash "${{ github.workspace }}/.github/scripts/prune_localizations.sh" .
           dpkg-deb --root-owner-group -Zgzip --build . ../ytlite.deb
           mv ../ytlite.deb ${{ github.workspace }}/ytlite.deb
 
