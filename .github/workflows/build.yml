@@ -41,13 +41,9 @@ jobs:
           exclude_inputs: bundle_id,display_name
 
       - name: Download and Validate IPA
-        run: |
-          wget "${{ inputs.ipa_url }}" --quiet --no-verbose -O youtube.ipa
-          file_type=$(file --mime-type -b youtube.ipa)
-          if [[ "$file_type" != "application/x-ios-app" && "$file_type" != "application/zip" ]]; then
-            echo "::error::Validation failed: The downloaded file is not a valid IPA. Detected type: $file_type."
-            exit 1
-          fi
+        env:
+          IPA_URL: ${{ inputs.ipa_url }}
+        run: bash "${{ github.workspace }}/.github/scripts/download_ipa.sh" "$IPA_URL" youtube.ipa
 
       - name: Get YouTube Version
         run: |
