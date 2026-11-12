@@ -336,7 +336,7 @@ jobs:
             tweaks="$tweaks $f"
           done
           
-          cyan -i youtube.ipa -o YTLitePlusEXTRA_NoYTLite_${{ env.YT_VERSION }}.ipa -uwef $tweaks -n "${{ inputs.display_name }}" -b ${{ inputs.bundle_id }}
+          cyan -i youtube.ipa -o YTLitePlusEXTRA_NoYTLite_${{ env.YT_VERSION }}.ipa -uf $tweaks -n "${{ inputs.display_name }}" -b ${{ inputs.bundle_id }}
 
       - name: Create a Draft Release
         uses: softprops/action-gh-release@v3

@@ -71,7 +71,7 @@ jobs:
 
       - name: Inject YTLite Into IPA
         run: |
-          cyan -i youtube.ipa -o YouTubePlus_${{ env.YT_VERSION }}_${{ env.YTL_VERSION }}.ipa -uwef ytlite.deb -n "${{ inputs.display_name }}" -b ${{ inputs.bundle_id }}
+          cyan -i youtube.ipa -o YouTubePlus_${{ env.YT_VERSION }}_${{ env.YTL_VERSION }}.ipa -uf ytlite.deb -n "${{ inputs.display_name }}" -b ${{ inputs.bundle_id }}
 
       - name: Create a Draft Release
         uses: softprops/action-gh-release@v3
